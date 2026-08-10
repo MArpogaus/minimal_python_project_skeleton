@@ -54,7 +54,14 @@ line-length = 88
 target-version = "py311"
 
 [tool.ruff.lint]
-select = ["I", "E", "F"]
+select = ["I", "E", "F", "D", "UP"]
+
+[tool.ruff.lint.per-file-ignores]
+# the pdoc include directive is the whole docstring; a period would break it
+"src/*/__init__.py" = ["D400"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
 
 [tool.setuptools_scm]
 # https://stackoverflow.com/a/74404703
