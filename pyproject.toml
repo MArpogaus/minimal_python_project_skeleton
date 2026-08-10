@@ -4,18 +4,16 @@ requires = ["setuptools >= 61", "setuptools_scm>=7"]
 
 [project]
 classifiers = [
-  "Programming Language :: Python :: 3.7",
-  "Programming Language :: Python :: 3.8",
-  "Programming Language :: Python :: 3.9",
-  "Programming Language :: Python :: 3.10",
-  "Programming Language :: Python :: 3.11"
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13"
 ]
 dependencies = []  # TODO: Add dependencies
 dynamic = ["version"]
 license = {text = "MIT"}  # TODO: Choose license
 name = "minimal_python_project_skeleton"  # TODO: Change package name
 readme = "README.md"
-requires-python = ">=3.7, <3.12"
+requires-python = ">=3.11"
 
 [project.optional-dependencies]
 develop = [
@@ -53,7 +51,7 @@ version_scheme = "pep440"
 [tool.ruff]
 indent-width = 4
 line-length = 88
-target-version = "py37"
+target-version = "py311"
 
 [tool.ruff.lint]
 select = ["I", "E", "F"]
