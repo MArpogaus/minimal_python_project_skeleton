@@ -48,6 +48,10 @@ update_changelog_on_bump = true
 version_provider = "scm"
 version_scheme = "pep440"
 
+[tool.pytest.ini_options]
+addopts = ["-v", "--tb=short", "-n", "auto", "--dist=loadfile"]
+testpaths = ["test"]
+
 [tool.ruff]
 indent-width = 4
 line-length = 88
