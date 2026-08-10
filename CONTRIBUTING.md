@@ -29,8 +29,10 @@ pip install -e ".[dev]"
 Optionally, we also provide [pre-commit hooks](#pre-commit-hooks) to ensure that the code you commit adheres to our conventions.
 
 ```
-pre-commit install
+pre-commit install --install-hooks -t pre-commit -t commit-msg -t pre-push
 ```
+
+Pass all three stages: plain `pre-commit install` wires up the `pre-commit` stage only, leaving the commit message checks (`commitizen`, `commitizen-branch`) dormant.
 
 After installation, pre-commit will automatically execute the configured hooks before each commit and provide instructions on how to fix detected issues.
 
