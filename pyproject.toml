@@ -10,7 +10,7 @@ classifiers = [
 ]
 dependencies = []  # TODO: Add dependencies
 dynamic = ["version"]
-license = {text = "MIT"}  # TODO: Choose license
+license = { text = "MIT" }  # TODO: Choose license
 name = "minimal_python_project_skeleton"  # TODO: Change package name
 readme = "README.md"
 requires-python = ">=3.11"
