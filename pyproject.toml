@@ -43,6 +43,7 @@ Issues = "https://github.com/MArpogaus/minimal_python_project_skeleton/issues"  
 Repository = "https://github.com/MArpogaus/minimal_python_project_skeleton"  # TODO: Change project repo
 
 [tool.commitizen]
+annotated_tag = true
 major_version_zero = true
 name = "cz_conventional_commits"
 tag_format = "v$version"
