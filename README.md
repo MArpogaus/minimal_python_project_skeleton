@@ -14,23 +14,25 @@
 
 # Minimal Python Project Skeleton
 
-1.  [About The Project](#org78704d3)
-2.  [Getting Started](#org2abf3eb)
-    1.  [Installation](#orge7488c3)
-3.  [Contributing](#org4068d30)
-4.  [License](#org227499e)
-5.  [Contact](#org6fa2a28)
-6.  [Acknowledgments](#org43fcc62)
+1.  [About The Project](#orgc3b490b)
+2.  [Getting Started](#org45aa3cf)
+    1.  [Installation](#orga09ebde)
+3.  [Contributing](#org561a72f)
+4.  [License](#org9c8af82)
+5.  [Contact](#org2bbc609)
+6.  [Acknowledgments](#org0fcb37a)
 
 
-<a id="org78704d3"></a>
+<a id="orgc3b490b"></a>
 
 ## About The Project
 
 This folder structure should act as a simple starting point for your next python project.
 
     .
+    ├── .envrc
     ├── .github
+    │   ├── dependabot.yml
     │   └── workflows
     │       ├── docs.yaml
     │       ├── pre-commit.yaml
@@ -43,6 +45,10 @@ This folder structure should act as a simple starting point for your next python
     ├── LICENSE
     ├── README.md
     ├── README.org
+    ├── docs
+    │   ├── api.md
+    │   └── index.md
+    ├── mkdocs.yml
     ├── pyproject.toml
     ├── src
     │   └── minimal_python_project_skeleton
@@ -50,23 +56,28 @@ This folder structure should act as a simple starting point for your next python
     └── test
         └── test_func.py
 
-    6 directories, 14 files
+    7 directories, 19 files
 
-It contains just the minimum to get you started with a ready configured GitHub actions for automated [linting](<https://github.com/MArpogaus/minimal-python-project-skeleton/blob/main/.github/workflows/pre-commit.yaml>), [testing](<https://github.com/MArpogaus/minimal-python-project-skeleton/blob/main/.github/workflows/test.yaml>), [documenting](<https://github.com/MArpogaus/minimal-python-project-skeleton/blob/main/.github/workflows/docs.yaml>) and [releasing](<https://github.com/MArpogaus/minimal-python-project-skeleton/blob/main/.github/workflows/release.yaml>) on PiPy.
+It contains just the minimum to get you started with a ready configured GitHub actions for automated [linting](<https://github.com/MArpogaus/minimal-python-project-skeleton/blob/main/.github/workflows/pre-commit.yaml>), [testing](<https://github.com/MArpogaus/minimal-python-project-skeleton/blob/main/.github/workflows/test.yaml>), [documenting](<https://github.com/MArpogaus/minimal-python-project-skeleton/blob/main/.github/workflows/docs.yaml>) with MkDocs and mike and [releasing](<https://github.com/MArpogaus/minimal-python-project-skeleton/blob/main/.github/workflows/release.yaml>) on PiPy.
 
 
-<a id="org2abf3eb"></a>
+<a id="org45aa3cf"></a>
 
 ## Getting Started
 
 Use this template directly to [create a new GitHub repository](<https://github.com/new?template_name=minimal-python-project-skeleton&template_owner=MArpogaus>) or just clone the repository to your desired destination and start working on your new project.
 
+The docs workflow publishes one docs version per branch to a `gh-pages` branch.  After the first push, set Settings -> Pages -> Source to *Deploy from a branch*: `gh-pages`, `/ (root)`.  The site root works after the first push to `main`.
+
 I have marked all the relevant parts that you might want to adjust.
 
     .github/workflows/release.yaml:      url: https://pypi.org/p/minimal-python-project-skeleton  # TODO: Replace with your PyPI project name
     .github/workflows/release.yaml:      url: https://test.pypi.org/p/minimal-python-project-skeleton  # TODO: Replace with your TestPyPI project name
+    docs/api.md:<!-- TODO: Change package name -->
+    mkdocs.yml:site_name: minimal_python_project_skeleton  # TODO: Change project name
+    mkdocs.yml:repo_url: https://github.com/MArpogaus/minimal_python_project_skeleton  # TODO: Change project repo
     pyproject.toml:dependencies = []  # TODO: Add dependencies
-    pyproject.toml:license = {text = "MIT"}  # TODO: Choose license
+    pyproject.toml:license = { text = "MIT" }  # TODO: Choose license
     pyproject.toml:name = "minimal_python_project_skeleton"  # TODO: Change package name
     pyproject.toml:  'minimal_python_project_skeleton[test]',  # TODO: Change package name
     pyproject.toml:Changelog = "https://github.com/MArpogaus/minimal_python_project_skeleton/blob/dev/CHANGELOG.md"  # TODO: Change project repo
@@ -78,7 +89,7 @@ I have marked all the relevant parts that you might want to adjust.
 This way you can also pull the latest version from upstream and `checkout` the new files you would like to use in your project.
 
 
-<a id="orge7488c3"></a>
+<a id="orga09ebde"></a>
 
 ### Installation
 
@@ -87,21 +98,21 @@ This package is available on [PyPI](https://pypi.org/project/minimal-python-proj
     pip install minimal_python_project_skeleton
 
 
-<a id="org4068d30"></a>
+<a id="org561a72f"></a>
 
 ## Contributing
 
 Any Contributions are greatly appreciated! If you have a question, an issue or would like to contribute, please read our [contributing guidelines](https://github.com/MArpogaus/minimal_python_project_skeleton/blob/main/CONTRIBUTING.md).
 
 
-<a id="org227499e"></a>
+<a id="org9c8af82"></a>
 
 ## License
 
 Distributed under the [MIT License](https://github.com/MArpogaus/minimal_python_project_skeleton/blob/main/LICENSE)
 
 
-<a id="org6fa2a28"></a>
+<a id="org2bbc609"></a>
 
 ## Contact
 
@@ -111,7 +122,7 @@ Project Link:
 <https://github.com/MArpogaus/python-project-skeleton>
 
 
-<a id="org43fcc62"></a>
+<a id="org0fcb37a"></a>
 
 ## Acknowledgments
 
