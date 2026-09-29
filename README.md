@@ -91,14 +91,14 @@ This package is available on [PyPI](https://pypi.org/project/minimal-python-proj
 
 ## Contributing
 
-Any Contributions are greatly appreciated! If you have a question, an issue or would like to contribute, please read our [contributing guidelines](CONTRIBUTING.md).
+Any Contributions are greatly appreciated! If you have a question, an issue or would like to contribute, please read our [contributing guidelines](https://github.com/MArpogaus/minimal_python_project_skeleton/blob/main/CONTRIBUTING.md).
 
 
 <a id="org227499e"></a>
 
 ## License
 
-Distributed under the [MIT License](LICENSE)
+Distributed under the [MIT License](https://github.com/MArpogaus/minimal_python_project_skeleton/blob/main/LICENSE)
 
 
 <a id="org6fa2a28"></a>
