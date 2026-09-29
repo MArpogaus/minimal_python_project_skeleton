@@ -2,7 +2,10 @@
 
 name: Publish Python Distribution to PyPI and TestPyPI
 
-on: push
+on:
+  push:
+    branches: [main]  # TestPyPI gets every state of main
+    tags: [v*]        # PyPI and the GitHub Release get only version tags
 
 permissions:
   contents: read
@@ -34,7 +37,7 @@ jobs:
 
   publish-to-pypi:
     name: Publish to PyPi
-    if: startsWith(github.ref, 'refs/tags/')  # only publish to PyPI on tag pushes
+    if: startsWith(github.ref, 'refs/tags/v')  # only publish to PyPI on version tags
     needs:
     - build
     runs-on: ubuntu-latest
