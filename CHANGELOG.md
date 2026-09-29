@@ -1,3 +1,16 @@
+## v0.4.0 (2026-09-29)
+
+### Feat
+
+- publish versioned docs with MkDocs and mike instead of pdoc
+
+### Fix
+
+- **ci**: pass the tag to the release commands through the environment
+
+
+- release only from main and version tags
+
 ## v0.3.0 (2026-08-10)
 
 ## v0.2.1 (2024-09-13)
