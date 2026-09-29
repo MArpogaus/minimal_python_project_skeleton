@@ -4,6 +4,9 @@ name: Publish Python Distribution to PyPI and TestPyPI
 
 on: push
 
+permissions:
+  contents: read
+
 jobs:
   build:
     name: Build

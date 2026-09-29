@@ -6,13 +6,15 @@ on:
     branches: [main, dev, dev-*]
   workflow_dispatch:
 permissions:
-  contents: write   # mike pushes gh-pages
+  contents: read
 concurrency:
   group: gh-pages
   cancel-in-progress: false
 jobs:
   docs:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write   # mike pushes gh-pages
     env:
       REF: ${{ github.ref_name }}
     steps:
