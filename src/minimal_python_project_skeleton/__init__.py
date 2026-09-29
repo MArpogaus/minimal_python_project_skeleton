@@ -1,4 +1,4 @@
-""".. include:: ../../README.md"""
+"""A minimal Python project skeleton."""
 
 
 def increment(x: int | float) -> int | float:

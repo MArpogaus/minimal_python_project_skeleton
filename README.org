@@ -29,7 +29,9 @@ This folder structure should act as a simple starting point for your next python
 #+RESULTS:
 #+begin_src bash
 .
+├── .envrc
 ├── .github
+│   ├── dependabot.yml
 │   └── workflows
 │       ├── docs.yaml
 │       ├── pre-commit.yaml
@@ -42,6 +44,10 @@ This folder structure should act as a simple starting point for your next python
 ├── LICENSE
 ├── README.md
 ├── README.org
+├── docs
+│   ├── api.md
+│   └── index.md
+├── mkdocs.yml
 ├── pyproject.toml
 ├── src
 │   └── minimal_python_project_skeleton
@@ -49,14 +55,16 @@ This folder structure should act as a simple starting point for your next python
 └── test
     └── test_func.py
 
-6 directories, 14 files
+7 directories, 19 files
 #+end_src
 
-It contains just the minimum to get you started with a ready configured GitHub actions for automated [linting](https://github.com/MArpogaus/minimal-python-project-skeleton/blob/main/.github/workflows/pre-commit.yaml), [testing](https://github.com/MArpogaus/minimal-python-project-skeleton/blob/main/.github/workflows/test.yaml), [documenting](https://github.com/MArpogaus/minimal-python-project-skeleton/blob/main/.github/workflows/docs.yaml) and [releasing](https://github.com/MArpogaus/minimal-python-project-skeleton/blob/main/.github/workflows/release.yaml) on PiPy.
+It contains just the minimum to get you started with a ready configured GitHub actions for automated [linting](https://github.com/MArpogaus/minimal-python-project-skeleton/blob/main/.github/workflows/pre-commit.yaml), [testing](https://github.com/MArpogaus/minimal-python-project-skeleton/blob/main/.github/workflows/test.yaml), [documenting](https://github.com/MArpogaus/minimal-python-project-skeleton/blob/main/.github/workflows/docs.yaml) with MkDocs and mike and [releasing](https://github.com/MArpogaus/minimal-python-project-skeleton/blob/main/.github/workflows/release.yaml) on PiPy.
 
 ** Getting Started
 
 Use this template directly to [create a new GitHub repository](https://github.com/new?template_name=minimal-python-project-skeleton&template_owner=MArpogaus) or just clone the repository to your desired destination and start working on your new project.
+
+The docs workflow publishes one docs version per branch to a =gh-pages= branch.  After the first push, set Settings -> Pages -> Source to /Deploy from a branch/: =gh-pages=, =/ (root)=.  The site root works after the first push to =main=.
 
 #+NAME: grep-todo
 #+begin_src bash :results code :exports results
@@ -69,8 +77,11 @@ I have marked all the relevant parts that you might want to adjust.
 #+begin_src bash
 .github/workflows/release.yaml:      url: https://pypi.org/p/minimal-python-project-skeleton  # TODO: Replace with your PyPI project name
 .github/workflows/release.yaml:      url: https://test.pypi.org/p/minimal-python-project-skeleton  # TODO: Replace with your TestPyPI project name
+docs/api.md:<!-- TODO: Change package name -->
+mkdocs.yml:site_name: minimal_python_project_skeleton  # TODO: Change project name
+mkdocs.yml:repo_url: https://github.com/MArpogaus/minimal_python_project_skeleton  # TODO: Change project repo
 pyproject.toml:dependencies = []  # TODO: Add dependencies
-pyproject.toml:license = {text = "MIT"}  # TODO: Choose license
+pyproject.toml:license = { text = "MIT" }  # TODO: Choose license
 pyproject.toml:name = "minimal_python_project_skeleton"  # TODO: Change package name
 pyproject.toml:  'minimal_python_project_skeleton[test]',  # TODO: Change package name
 pyproject.toml:Changelog = "https://github.com/MArpogaus/minimal_python_project_skeleton/blob/dev/CHANGELOG.md"  # TODO: Change project repo
@@ -92,11 +103,11 @@ This package is available on [[https://pypi.org/project/minimal-python-project-s
 
 ** Contributing
 
-Any Contributions are greatly appreciated! If you have a question, an issue or would like to contribute, please read our [[file:CONTRIBUTING.md][contributing guidelines]].
+Any Contributions are greatly appreciated! If you have a question, an issue or would like to contribute, please read our [[https://github.com/MArpogaus/minimal_python_project_skeleton/blob/main/CONTRIBUTING.md][contributing guidelines]].
 
 ** License
 
-Distributed under the [[file:LICENSE][MIT License]]
+Distributed under the [[https://github.com/MArpogaus/minimal_python_project_skeleton/blob/main/LICENSE][MIT License]]
 
 ** Contact
 

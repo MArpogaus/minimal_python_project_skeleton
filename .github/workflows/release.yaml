@@ -2,7 +2,13 @@
 
 name: Publish Python Distribution to PyPI and TestPyPI
 
-on: push
+on:
+  push:
+    branches: [main]  # TestPyPI gets every state of main
+    tags: [v*]        # PyPI and the GitHub Release get only version tags
+
+permissions:
+  contents: read
 
 jobs:
   build:
@@ -31,7 +37,7 @@ jobs:
 
   publish-to-pypi:
     name: Publish to PyPi
-    if: startsWith(github.ref, 'refs/tags/')  # only publish to PyPI on tag pushes
+    if: startsWith(github.ref, 'refs/tags/v')  # only publish to PyPI on version tags
     needs:
     - build
     runs-on: ubuntu-latest
@@ -47,7 +53,7 @@ jobs:
         name: python-package-distributions
         path: dist/
     - name: Publish distribution to PyPI
-      uses: pypa/gh-action-pypi-publish@release/v1
+      uses: pypa/gh-action-pypi-publish@dc37677b2e1c63e2034f94d8a5b11f265b73ba33 # v1.14.2
 
   github-release:
     name: >-
@@ -76,21 +82,23 @@ jobs:
     - name: Create GitHub Release
       env:
         GITHUB_TOKEN: ${{ github.token }}
+        TAG: ${{ github.ref_name }}
       run: >-
         gh release create
-        '${{ github.ref_name }}'
-        --repo '${{ github.repository }}'
+        "$TAG"
+        --repo "$GITHUB_REPOSITORY"
         --notes ""
     - name: Upload artifact signatures to GitHub Release
       env:
         GITHUB_TOKEN: ${{ github.token }}
+        TAG: ${{ github.ref_name }}
       # Upload to GitHub Release using the `gh` CLI.
       # `dist/` contains the built packages, and the
       # sigstore-produced signatures and certificates.
       run: >-
         gh release upload
-        '${{ github.ref_name }}' dist/**
-        --repo '${{ github.repository }}'
+        "$TAG" dist/**
+        --repo "$GITHUB_REPOSITORY"
 
   publish-to-testpypi:
     name: Publish Python distribution to TestPyPI
@@ -112,7 +120,7 @@ jobs:
         name: python-package-distributions
         path: dist/
     - name: Publish distribution to TestPyPI
-      uses: pypa/gh-action-pypi-publish@release/v1
+      uses: pypa/gh-action-pypi-publish@dc37677b2e1c63e2034f94d8a5b11f265b73ba33 # v1.14.2
       with:
         skip-existing: true
         repository-url: https://test.pypi.org/legacy/

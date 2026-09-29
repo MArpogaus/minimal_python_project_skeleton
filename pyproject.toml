@@ -10,7 +10,7 @@ classifiers = [
 ]
 dependencies = []  # TODO: Add dependencies
 dynamic = ["version"]
-license = {text = "MIT"}  # TODO: Choose license
+license = { text = "MIT" }  # TODO: Choose license
 name = "minimal_python_project_skeleton"  # TODO: Change package name
 readme = "README.md"
 requires-python = ">=3.11"
@@ -27,7 +27,9 @@ develop = [
   'ruff'
 ]
 docs = [
-  'pdoc'
+  'mike',
+  'mkdocs-material',
+  'mkdocstrings[python]'
 ]
 test = [
   'pytest',
@@ -59,10 +61,6 @@ target-version = "py311"
 
 [tool.ruff.lint]
 select = ["I", "E", "F", "D", "UP"]
-
-[tool.ruff.lint.per-file-ignores]
-# the pdoc include directive is the whole docstring; a period would break it
-"src/*/__init__.py" = ["D400"]
 
 [tool.ruff.lint.pydocstyle]
 convention = "numpy"

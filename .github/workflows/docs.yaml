@@ -1,46 +1,36 @@
-# Adjusted workflow from: https://github.com/mitmproxy/pdoc/blob/25f325d06aaacba9711f957f48e770029f608f6a/.github/workflows/docs.yml
-
-name: Generate documentation using pdoc and deploy as gh page.
-
-# build the documentation whenever there are new commits on main
+# Build the MkDocs site and publish one version per branch with mike:
+# main is the default version `latest`, every dev branch sits beside it.
+name: Build and deploy documentation
 on:
   push:
-    branches:
-    tags:
-    - '*'
-
-# security: restrict permissions for CI jobs.
+    branches: [main, dev, dev-*]
+  workflow_dispatch:
 permissions:
   contents: read
-
+concurrency:
+  group: gh-pages
+  cancel-in-progress: false
 jobs:
-  # Build the documentation and upload the static HTML files as an artifact.
-  build:
+  docs:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write   # mike pushes gh-pages
+    env:
+      REF: ${{ github.ref_name }}
     steps:
     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      with:
+        fetch-depth: 0   # mike reads and writes gh-pages
     - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
       with:
         python-version: '3.11'
-
-      # Install all dependencies (including pdoc)
     - run: pip install -e .[docs]
-    - run: pdoc -d numpy -o docs minimal_python_project_skeleton
-    - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
-      with:
-        path: docs/
-
-  # Deploy the artifact to GitHub pages.
-  # This is a separate job so that only actions/deploy-pages has the necessary permissions.
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-    - id: deployment
-      uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5.0.0
+    - run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        if [ "$REF" = main ]; then
+          mike deploy --push --update-aliases main latest
+          mike set-default --push latest
+        else
+          mike deploy --push "$REF"
+        fi

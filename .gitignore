@@ -298,5 +298,5 @@ $RECYCLE.BIN/
 
 # End of https://www.toptal.com/developers/gitignore/api/python,jupyternotebooks,emacs,linux,macos,windows
 
-# generated pdoc output (deployed to gh-pages by the docs workflow)
-docs/
+# MkDocs output (mike publishes it to gh-pages)
+site/
