@@ -1,6 +1,6 @@
 # Build the MkDocs site and publish one version per branch with mike:
 # main is the default version `latest`, every dev branch sits beside it.
-name: docs
+name: Build and deploy documentation
 on:
   push:
     branches: [main, dev, dev-*]
