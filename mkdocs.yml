@@ -1,4 +1,4 @@
-site_name: minimal_python_project_skeleton
+site_name: minimal_python_project_skeleton  # TODO: Change project name
 repo_url: https://github.com/MArpogaus/minimal_python_project_skeleton  # TODO: Change project repo
 strict: true
 theme:
